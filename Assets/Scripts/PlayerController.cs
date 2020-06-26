@@ -7,8 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public float speed = 1.0f;
-    public float jump = 10.0f;
+    public float speed = 5.0f;
+    public float jump = 5.0f;
     public int maxJumps = 1;
     int jumpCount = 0;
     public LayerMask JumpMask;
@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour
     public Transform PickupPosition;
     public LayerMask PickupMask;
 
+    public bool isFaceRight = true;
+    private bool faceRight = true;
+
     // object used to hold.
     private GameObject holding;
     private bool holdingfreezeRotation;
@@ -35,13 +38,19 @@ public class PlayerController : MonoBehaviour
     private Collision2D col;
     private bool isCrouching;
     public float crouchHeight = 0.5f;
-    private Vector3 orgScale;
+    private float orgHeight;
 
     private void Start()
     {
         jumpCount = maxJumps;
         rb = this.GetComponent<Rigidbody2D>();
-        orgScale = this.transform.localScale;
+        rb.freezeRotation = true;
+        orgHeight = this.transform.localScale.y;
+
+        if (!isFaceRight)
+        {
+            FlipSprite();
+        }
     }
 
     // Update is called once per frame
@@ -138,7 +147,9 @@ public class PlayerController : MonoBehaviour
         else if( !v && isCrouching )
         {
             isCrouching = false;
-            this.transform.localScale = orgScale;
+            Vector3 scale = this.transform.localScale;
+            scale.y = orgHeight;
+            this.transform.localScale = scale;
         }
     }
     
@@ -160,6 +171,17 @@ public class PlayerController : MonoBehaviour
 
         #region Movement
 
+        if( dir < 0 && faceRight )
+        {
+            faceRight = !faceRight;
+            FlipSprite();
+        }
+        else if( dir > 0 && !faceRight )
+        {
+            faceRight = !faceRight;
+            FlipSprite();
+        }
+
         Vector2 velocity = rb.velocity;
         velocity.x = dir * speed;
         rb.velocity = velocity;
@@ -176,7 +198,6 @@ public class PlayerController : MonoBehaviour
         }
 
         #endregion
-
 
         #region Check Ground
 
@@ -196,6 +217,13 @@ public class PlayerController : MonoBehaviour
         //}
 
         #endregion
+    }
+
+    private void FlipSprite()
+    {
+        Vector3 scale = this.transform.localScale;
+        scale.x *= -1;
+        this.transform.localScale = scale;
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
