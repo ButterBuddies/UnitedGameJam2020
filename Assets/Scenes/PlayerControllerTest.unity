@@ -344,7 +344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jump: 100
+  jump: 5
   JumpMask:
     serializedVersion: 2
     m_Bits: 0
