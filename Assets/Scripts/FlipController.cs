@@ -37,6 +37,13 @@ public class FlipController : MonoBehaviour
                 obj.GetComponent<Rigidbody2D>().gravityScale = -obj.GetComponent<Rigidbody2D>().gravityScale;
             }
         }
+        foreach (GameObject obj in yangGroup)
+        {
+            if (obj.GetComponent<FlipsGravity>())
+            {
+                obj.GetComponent<Rigidbody2D>().gravityScale = -obj.GetComponent<Rigidbody2D>().gravityScale;
+            }
+        }
     }
 
     // Update is called once per frame
