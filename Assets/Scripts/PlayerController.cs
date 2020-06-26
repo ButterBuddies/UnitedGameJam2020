@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
 
     public float speed = 1.0f;
     public float jump = 10.0f;
+    public int maxJumps = 1;
+    int jumpCount = 0;
     public LayerMask JumpMask;
     //public string horizontalVar = "Horizontal";
     //public string jumpVar = "Jump";
@@ -37,6 +39,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        jumpCount = maxJumps;
         rb = this.GetComponent<Rigidbody2D>();
         orgScale = this.transform.localScale;
     }
@@ -47,14 +50,28 @@ public class PlayerController : MonoBehaviour
         if(playerOne)
         {
             dir = Input.GetAxis("Horizontal");
-            Jump(Input.GetButtonDown("Jump"));
+            if(Input.GetButtonDown("Jump"))
+            {
+                if(jumpCount > 0)
+                {
+                    Jump();
+                }
+            }
             Crouch(Input.GetButton("Crouch"));
+            //Jump(Input.GetButtonDown("Jump"));
         }
         else
         {
             dir = Input.GetAxis("HorizontalYang");
-            Jump(Input.GetButtonDown("JumpYang"));
+            if(Input.GetButtonDown("JumpYang"))
+            {
+                if(jumpCount > 0)
+                {
+                    Jump();
+                }
+            }
             Crouch(Input.GetButton("CrouchYang"));
+            //Jump(Input.GetButtonDown("JumpYang"));
         }
         
 
@@ -124,14 +141,18 @@ public class PlayerController : MonoBehaviour
             this.transform.localScale = orgScale;
         }
     }
-
-    private void Jump(bool v)
+    
+    private void Jump()
     {
-        if( canJump && v )
+        
+        GetComponent<Rigidbody2D>().velocity = transform.up * 10;
+        jumpCount -= 1;
+        /*if( canJump && v )
         {
-            rb.AddForce(Vector3.up * rb.gravityScale * jump, ForceMode2D.Impulse);
+
+            //rb.AddForce(Vector3.up * rb.gravityScale * jump, ForceMode2D.Impulse);
             //canJump = false;
-        }
+        }*/
     }
 
     public void FixedUpdate()
@@ -179,13 +200,16 @@ public class PlayerController : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        col = collision;
+        if(collision.gameObject.tag == "LevelGround")
+        {
+            jumpCount = maxJumps;
+        }
     }
 
     // once you leave the object, then set it to null..
-    public void OnCollisionExit2D(Collision2D collision)
+    /*public void OnCollisionExit2D(Collision2D collision)
     {
         if( col == collision )
             col = null;
-    }
+    }*/
 }
