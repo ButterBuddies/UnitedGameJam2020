@@ -12,7 +12,9 @@ public class PlayerController : MonoBehaviour
     public float speed = 1.0f;
     public float jump = 10.0f;
     public LayerMask JumpMask;
-
+    //public string horizontalVar = "Horizontal";
+    //public string jumpVar = "Jump";
+    public bool playerOne = true;
     public PhysicsMaterial2D Stop;
     public PhysicsMaterial2D Moving;
 
@@ -30,8 +32,18 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        dir = Input.GetAxis("Horizontal");
-        Jump(Input.GetButtonDown("Jump"));
+        if(playerOne)
+        {
+            dir = Input.GetAxis("Horizontal");
+            Jump(Input.GetButtonDown("Jump"));
+        }
+        else
+        {
+            dir = Input.GetAxis("HorizontalYang");
+            Jump(Input.GetButtonDown("JumpYang"));
+        }
+        
+
     }
 
     private void Jump(bool v)
