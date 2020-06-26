@@ -44,6 +44,7 @@ public class FlipController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
+            Debug.Log("pressed flip button");
             flipAxis.gameObject.transform.localScale = new Vector3(1, flip, 1);
 
             if (flip == 1)
