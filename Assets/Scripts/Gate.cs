@@ -24,7 +24,6 @@ public class Gate : MonoBehaviour
 
     public void CloseGate()
     {
-        Debug.Log("got here in close gate");
         col.enabled = true;
         sprite.enabled = true;
     }
