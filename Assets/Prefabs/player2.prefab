@@ -212,9 +212,6 @@ MonoBehaviour:
   HoldingTransformation: {fileID: 2231601642816090136}
   PickupPosition: {fileID: 6281735303013360426}
   DropoffPosition: {fileID: 2668397496529652215}
-  PickupMask:
-    serializedVersion: 2
-    m_Bits: 0
   isFaceRight: 1
   crouchHeight: 0.15
   blockSafeDistanceCheck: 0.5
@@ -222,7 +219,7 @@ MonoBehaviour:
   ShowDebug: 0
   dropoffMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 311
 --- !u!114 &1692385196
 MonoBehaviour:
   m_ObjectHideFlags: 0
