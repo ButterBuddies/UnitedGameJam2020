@@ -954,7 +954,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: -0.79999995
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2471876273876332456, guid: 6c3ed07259b41a945ba985f4876efd87, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6c3ed07259b41a945ba985f4876efd87, type: 3}
 --- !u!4 &271086166 stripped
 Transform:
@@ -1239,7 +1240,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 1.0899999
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2471876273876332456, guid: 6c3ed07259b41a945ba985f4876efd87, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6c3ed07259b41a945ba985f4876efd87, type: 3}
 --- !u!4 &391969169 stripped
 Transform:
@@ -1903,7 +1905,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: -0.79999995
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2471876273876332456, guid: 6c3ed07259b41a945ba985f4876efd87, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6c3ed07259b41a945ba985f4876efd87, type: 3}
 --- !u!4 &802744417 stripped
 Transform:
@@ -2249,7 +2252,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 1.0899999
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2471876273876332456, guid: 6c3ed07259b41a945ba985f4876efd87, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6c3ed07259b41a945ba985f4876efd87, type: 3}
 --- !u!4 &855661113 stripped
 Transform:
@@ -4485,7 +4489,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 1.0899999
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2471876273876332456, guid: 6c3ed07259b41a945ba985f4876efd87, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6c3ed07259b41a945ba985f4876efd87, type: 3}
 --- !u!4 &1739841479 stripped
 Transform:
@@ -4914,7 +4919,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 1.0899999
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2471876273876332456, guid: 6c3ed07259b41a945ba985f4876efd87, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6c3ed07259b41a945ba985f4876efd87, type: 3}
 --- !u!4 &1951394273 stripped
 Transform:
