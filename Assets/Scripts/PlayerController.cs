@@ -98,11 +98,7 @@ public class PlayerController : MonoBehaviour
         {
             dir = Input.GetAxis("Horizontal");
             
-            anim.SetBool("IsWalking", false);
-            if (dir != 0)
-            {
-                anim.SetBool("IsWalking", true);
-            }
+            
 
             if (Input.GetButtonDown("Jump"))
             {
@@ -117,6 +113,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             dir = Input.GetAxis("HorizontalYang");
+
             if(Input.GetButtonDown("JumpYang"))
             {
                 if(jumpCount > 0)
@@ -293,8 +290,13 @@ public class PlayerController : MonoBehaviour
     {
 
         #region Movement
+        anim.SetBool("IsWalking", false);
+        if (dir != 0)
+        {
+            anim.SetBool("IsWalking", true);
+        }
 
-        if( dir < 0 && faceRight )
+        if ( dir < 0 && faceRight )
         {
             faceRight = !faceRight;
             FlipSprite();
