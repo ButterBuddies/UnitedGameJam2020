@@ -6,6 +6,7 @@ TagManager:
   tags:
   - LevelGround
   - ground
+  - PickupObject
   layers:
   - Default
   - TransparentFX
