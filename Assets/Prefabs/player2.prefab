@@ -190,6 +190,7 @@ MonoBehaviour:
   Moving: {fileID: 0}
   HoldingTransformation: {fileID: 2231601642816090136}
   PickupPosition: {fileID: 6281735303013360426}
+  DropoffPosition: {fileID: 2668397496529652215}
   PickupMask:
     serializedVersion: 2
     m_Bits: 0
