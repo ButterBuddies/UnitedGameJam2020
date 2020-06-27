@@ -67,50 +67,50 @@ public class FlipController : MonoBehaviour
             FlipGravityOfGroups();
         }
 
-        //pretty flip
-        if (Input.GetKeyDown(KeyCode.RightShift))
-        {
-            //flipAxis.gameObject.transform.localScale = new Vector3(1, flip, 1);
-            inFlipSequence = true;
+        ////pretty flip
+        //if (Input.GetKeyDown(KeyCode.RightShift))
+        //{
+        //    //flipAxis.gameObject.transform.localScale = new Vector3(1, flip, 1);
+        //    inFlipSequence = true;
 
-            if (flip == 1)
-                flip = -1;
-            else
-                flip = 1;
-        }
+        //    if (flip == 1)
+        //        flip = -1;
+        //    else
+        //        flip = 1;
+        //}
 
-        if (inFlipSequence)
-        {
-            //updates pretty flip over time (.5 seconds?)
-            if (flip == 1)
-            {
-                if (flipValue < 1)
-                {
-                    flipValue += flipSpeed;
-                    flipAxis.gameObject.transform.localScale = new Vector3(1, flipValue, 1);
-                }
-                else
-                {   //done with flip sequence
-                    inFlipSequence = false;
-                }
+        //if (inFlipSequence)
+        //{
+        //    //updates pretty flip over time (.5 seconds?)
+        //    if (flip == 1)
+        //    {
+        //        if (flipValue < 1)
+        //        {
+        //            flipValue += flipSpeed;
+        //            flipAxis.gameObject.transform.localScale = new Vector3(1, flipValue, 1);
+        //        }
+        //        else
+        //        {   //done with flip sequence
+        //            inFlipSequence = false;
+        //        }
 
-            }
-            else // (flip == -1)
-            {
-                if (flipValue > -1)
-                {
-                    flipValue -= flipSpeed;
-                    flipAxis.gameObject.transform.localScale = new Vector3(1, flipValue, 1);
-                }
-                else
-                {   //done with flip sequence
-                    inFlipSequence = false;
-                }
+        //    }
+        //    else // (flip == -1)
+        //    {
+        //        if (flipValue > -1)
+        //        {
+        //            flipValue -= flipSpeed;
+        //            flipAxis.gameObject.transform.localScale = new Vector3(1, flipValue, 1);
+        //        }
+        //        else
+        //        {   //done with flip sequence
+        //            inFlipSequence = false;
+        //        }
 
-            }
+        //    }
 
-            FlipGravityOfGroups();
-        }
+        //    FlipGravityOfGroups();
+        //}
 
     }
 }

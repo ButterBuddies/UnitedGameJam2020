@@ -49,12 +49,15 @@ public class PlayerController : MonoBehaviour
     private float orgHeight;
     public float blockSafeDistanceCheck;
 
+    private Animator anim;
+
     private void Start()
     {
+
         // set metadata for the offset at start.
         //pickupOffset = PickupPosition.position;
         //holdingOffset = HoldingTransformation.position;
-
+        anim = GetComponentInChildren<Animator>();
         
         jumpCount = maxJumps;
         rb = this.GetComponent<Rigidbody2D>();
@@ -81,7 +84,14 @@ public class PlayerController : MonoBehaviour
         if(playerOne)
         {
             dir = Input.GetAxis("Horizontal");
-            if(Input.GetButtonDown("Jump"))
+            
+            anim.SetBool("IsWalking", false);
+            if (dir != 0)
+            {
+                anim.SetBool("IsWalking", true);
+            }
+
+            if (Input.GetButtonDown("Jump"))
             {
                 if(jumpCount > 0)
                 {
@@ -252,6 +262,7 @@ public class PlayerController : MonoBehaviour
     
     private void Jump()
     {
+        anim.SetTrigger("TriggerJump");
         // avoid jumping when holding objects.
         if (IsHolding) return;
         //GetComponent<Rigidbody2D>().velocity = transform.up * 10;
