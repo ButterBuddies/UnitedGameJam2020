@@ -20,9 +20,9 @@ public class PlayerController : MonoBehaviour
 
     // Set the position of how we can pick up the object.... oooo how are we going to do the opposite side??
     public Transform HoldingTransformation;
-    //private Vector3 holdingOffset;
     public Transform PickupPosition;
-    //private Vector3 pickupOffset;
+    public Transform DropoffPosition;
+
     public LayerMask PickupMask;
 
     public bool isFaceRight = true;
@@ -110,7 +110,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (holding != null)
                 {
-                    holding.transform.position = PickupPosition.position;
+                    holding.transform.position = DropoffPosition?.position ?? PickupPosition.position;
                     Rigidbody2D temp = holding.GetComponent<Rigidbody2D>();
                     if(temp != null )
                     {
@@ -162,7 +162,8 @@ public class PlayerController : MonoBehaviour
     
     private void Jump()
     {
-
+        // avoid jumping when holding objects.
+        if (holding != null) return;
         //GetComponent<Rigidbody2D>().velocity = transform.up * 10;
         rb.AddForce(Vector3.up * rb.gravityScale * jump, ForceMode2D.Impulse);
         jumpCount -= 1;
