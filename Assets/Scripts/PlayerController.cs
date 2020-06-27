@@ -268,7 +268,7 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         if (!canJump) return;
-        anim.SetTrigger("TriggerJump");
+
         // avoid jumping when holding objects.
         if (IsHolding) return;
         //GetComponent<Rigidbody2D>().velocity = transform.up * 10;
@@ -284,16 +284,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void FixedUpdate()
     {
-        #region Animation
-        anim.SetBool("IsWalking", false);
 
-        if (dir != 0)
-        {
-            anim.SetBool("IsWalking", true);
-        }
-        
-        anim.SetBool("IsFalling", !canJump);
-        #endregion
 
         #region Movement
 
@@ -345,6 +336,17 @@ public class PlayerController : MonoBehaviour
             canJump = true;
         }
 
+        #endregion
+
+        #region Animation
+        anim.SetBool("IsWalking", false);
+        anim.SetBool("IsFalling", false);
+        if (dir != 0)
+        {
+            anim.SetBool("IsWalking", true);
+        }
+
+        anim.SetBool("IsFalling", !canJump);
         #endregion
     }
 

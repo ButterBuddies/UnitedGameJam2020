@@ -205,7 +205,7 @@ MonoBehaviour:
   maxJumps: 1
   JumpMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   playerOne: 0
   Stop: {fileID: 6200000, guid: 34281e34cfe593546a26d8631afc7115, type: 2}
   Moving: {fileID: 6200000, guid: 6ced85d61ce7d6b418366f2b82b7d0d3, type: 2}
