@@ -51,11 +51,6 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        // set metadata for the offset at start.
-        //pickupOffset = PickupPosition.position;
-        //holdingOffset = HoldingTransformation.position;
-
-        
         jumpCount = maxJumps;
         rb = this.GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
@@ -343,9 +338,12 @@ public class PlayerController : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "LevelGround")
+        if (collision.gameObject.tag == "LevelGround")
         {
-            jumpCount = maxJumps;
+            //Debug.Log($"{this.gameObject.name} -> {collision.contacts[0].normal}");
+            //if( ( playerOne && collision.contacts[0].normal == Vector2.up ) ||
+            //    ( !playerOne && collision.contacts[0].normal == Vector2.down ) )
+                jumpCount = maxJumps;
         }
 
         // this will be interesting..
@@ -354,7 +352,7 @@ public class PlayerController : MonoBehaviour
         // pick up the block anyway. 
 
         // for now.... this seems to only work when you're player 1 at the moment....
-        if( playerOne && !IsHolding)
+        if ( playerOne && !IsHolding)
         {
             // check and see where the collision hits if the collision was coming from the top... 
             // do some weird mumbo jumbo script ehre to check and see if the block did hit from the top and everything all goes well    
