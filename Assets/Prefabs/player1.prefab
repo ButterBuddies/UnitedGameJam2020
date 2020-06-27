@@ -245,8 +245,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   playerOne: 1
-  Stop: {fileID: 0}
-  Moving: {fileID: 0}
+  Stop: {fileID: 6200000, guid: 34281e34cfe593546a26d8631afc7115, type: 2}
+  Moving: {fileID: 6200000, guid: 6ced85d61ce7d6b418366f2b82b7d0d3, type: 2}
   HoldingTransformation: {fileID: 7138536754555011387}
   PickupPosition: {fileID: 6358796418017560322}
   PickupMask:
