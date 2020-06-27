@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
 
     public float speed = 5.0f;
-    public float jump = 5.0f;
+    public float jumpForce= 5.0f;
     public int maxJumps = 1;
     int jumpCount = 0;
     public LayerMask JumpMask;
@@ -20,7 +20,9 @@ public class PlayerController : MonoBehaviour
 
     // Set the position of how we can pick up the object.... oooo how are we going to do the opposite side??
     public Transform HoldingTransformation;
+    //private Vector3 holdingOffset;
     public Transform PickupPosition;
+    //private Vector3 pickupOffset;
     public LayerMask PickupMask;
 
     public bool isFaceRight = true;
@@ -42,6 +44,10 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        // set metadata for the offset at start.
+        //pickupOffset = PickupPosition.position;
+        //holdingOffset = HoldingTransformation.position;
+
         jumpCount = maxJumps;
         rb = this.GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
@@ -82,8 +88,6 @@ public class PlayerController : MonoBehaviour
             Crouch(Input.GetButton("CrouchYang"));
             //Jump(Input.GetButtonDown("JumpYang"));
         }
-        
-
     }
 
     private void Crouch(bool v)
@@ -97,9 +101,10 @@ public class PlayerController : MonoBehaviour
         {
             isCrouching = true;
 
-            Vector3 scale = this.transform.localScale;
-            scale.y = crouchHeight;
-            this.transform.localScale = scale;
+            // nice to have : Make it "squish" when picking up object. Affect sprite only
+            //Vector3 scale = this.transform.localScale;
+            //scale.y = crouchHeight;
+            //this.transform.localScale = scale;
 
             if (HoldingTransformation != null && PickupPosition != null)
             {
@@ -149,9 +154,9 @@ public class PlayerController : MonoBehaviour
         else if( !v && isCrouching )
         {
             isCrouching = false;
-            Vector3 scale = this.transform.localScale;
-            scale.y = orgHeight;
-            this.transform.localScale = scale;
+            //Vector3 scale = this.transform.localScale;
+            //scale.y = orgHeight;
+            //this.transform.localScale = scale;
         }
     }
     
@@ -159,7 +164,7 @@ public class PlayerController : MonoBehaviour
     {
 
         //GetComponent<Rigidbody2D>().velocity = transform.up * 10;
-        rb.AddForce(Vector3.up * rb.gravityScale * jump, ForceMode2D.Impulse);
+        rb.AddForce(Vector3.up * rb.gravityScale * jumpForce, ForceMode2D.Impulse);
         jumpCount -= 1;
         
             //canJump = false;
