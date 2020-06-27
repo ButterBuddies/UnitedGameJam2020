@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class FlipController : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class FlipController : MonoBehaviour
     private float flipSpeed = 0.05f; //the smaller the slower the flip sequence
     private int flip = -1;
 
+    private PlayerController[] playerControllers;
+    
     public void Start() //gets the yin and yang groups based on the group holders children in the hierarchy
     {
         yinGroup = new GameObject[yinGroupHolder.transform.childCount];
@@ -26,6 +29,8 @@ public class FlipController : MonoBehaviour
 
         for (int i = 0; i < yangGroupHolder.transform.childCount; ++i)
             yangGroup[i] = yangGroupHolder.transform.GetChild(i).gameObject;
+
+        playerControllers = GameObject.FindObjectsOfType<PlayerController>();
     }
 
     public void FlipGravityOfGroups()
@@ -44,6 +49,9 @@ public class FlipController : MonoBehaviour
                 obj.GetComponent<Rigidbody2D>().gravityScale = -obj.GetComponent<Rigidbody2D>().gravityScale;
             }
         }
+
+        // JB - Loop all playercontroller and then invert boolean value.
+        playerControllers.ToList().ForEach(x => x.playerOne = !x.playerOne);
     }
 
     // Update is called once per frame
