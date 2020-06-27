@@ -11,10 +11,11 @@ public class PlayerController : MonoBehaviour
     public float jumpForce= 5.0f;
     public int maxJumps = 1;
     int jumpCount = 0;
-    public LayerMask JumpMask;
-    //public string horizontalVar = "Horizontal";
-    //public string jumpVar = "Jump";
+    public LayerMask JumpMask;  // er?
+    // invertly flips the controls
     public bool playerOne = true;
+
+    // To control how the physics responds to the character movement.
     public PhysicsMaterial2D Stop;
     public PhysicsMaterial2D Moving;
 
@@ -22,8 +23,6 @@ public class PlayerController : MonoBehaviour
     public Transform HoldingTransformation;
     public Transform PickupPosition;
     public Transform DropoffPosition;
-
-    public LayerMask PickupMask;
 
     public bool isFaceRight = true;
     private bool faceRight = true;
@@ -49,12 +48,18 @@ public class PlayerController : MonoBehaviour
     private float orgHeight;
     public float blockSafeDistanceCheck;
 
+    private Animator anim;
+    public float groundCheck = 1.0f;
+
+    public bool ShowDebug = false;
+    public LayerMask dropoffMask;
+
     private void Start()
     {
         // set metadata for the offset at start.
         //pickupOffset = PickupPosition.position;
         //holdingOffset = HoldingTransformation.position;
-
+        anim = GetComponentInChildren<Animator>();
         
         jumpCount = maxJumps;
         rb = this.GetComponent<Rigidbody2D>();
@@ -65,6 +70,14 @@ public class PlayerController : MonoBehaviour
         {
             FlipSprite();
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (!ShowDebug) return;
+
+        Gizmos.color = canJump ? Color.green : Color.red;
+        Gizmos.DrawRay(this.transform.position, Vector3.down * ( rb?.gravityScale ?? 1 ) * groundCheck);
     }
 
     public void SwapPlayerWorld()
@@ -81,28 +94,30 @@ public class PlayerController : MonoBehaviour
         if(playerOne)
         {
             dir = Input.GetAxis("Horizontal");
-            if(Input.GetButtonDown("Jump"))
+            
+            
+
+            if (Input.GetButtonDown("Jump"))
             {
-                if(jumpCount > 0)
-                {
+                //if(jumpCount > 0)
+                //{
                     Jump();
-                }
+                //}
             }
             Crouch(Input.GetButton("Crouch"));
-            //Jump(Input.GetButtonDown("Jump"));
         }
         else
         {
             dir = Input.GetAxis("HorizontalYang");
+
             if(Input.GetButtonDown("JumpYang"))
             {
-                if(jumpCount > 0)
-                {
+                //if(jumpCount > 0)
+                //{
                     Jump();
-                }
+                //}
             }
             Crouch(Input.GetButton("CrouchYang"));
-            //Jump(Input.GetButtonDown("JumpYang"));
         }
     }
 
@@ -153,7 +168,7 @@ public class PlayerController : MonoBehaviour
 
         float rayDir = Mathf.Clamp(this.transform.position.x - DropoffPosition.position.x, -1, 1) * blockSafeDistanceCheck;
         Debug.Log(rayDir);
-        RaycastHit2D[] hit = Physics2D.RaycastAll(this.transform.position, Vector2.left * rayDir, Vector2.Distance(this.transform.position, DropoffPosition.position));
+        RaycastHit2D[] hit = Physics2D.RaycastAll(this.transform.position, Vector2.left * rayDir, Vector2.Distance(this.transform.position, DropoffPosition.position), dropoffMask);
         Collider2D c = this.GetComponent<Collider2D>();
 
         // I DETECT SOMETHING! PREVENT PUTTING DA BLOCK DOWN!!!
@@ -252,11 +267,13 @@ public class PlayerController : MonoBehaviour
     
     private void Jump()
     {
+        if (!canJump) return;
+
         // avoid jumping when holding objects.
         if (IsHolding) return;
         //GetComponent<Rigidbody2D>().velocity = transform.up * 10;
         rb.AddForce(Vector3.up * rb.gravityScale * jumpForce, ForceMode2D.Impulse);
-        jumpCount -= 1;
+        //jumpCount -= 1;
         
             //canJump = false;
         
@@ -268,9 +285,10 @@ public class PlayerController : MonoBehaviour
     public void FixedUpdate()
     {
 
+
         #region Movement
 
-        if( dir < 0 && faceRight )
+        if ( dir < 0 && faceRight )
         {
             faceRight = !faceRight;
             FlipSprite();
@@ -308,21 +326,27 @@ public class PlayerController : MonoBehaviour
 
         #region Check Ground
 
-        //if ( col is null )
-        //{
-        //    canJump = false;
-        //}
-        //else
-        //{
-        //    // Hmm we need to be able to filter just the ground for this? Solve this by checking if the y velocity is zero
-        //    int mask = col.gameObject.layer;
-        //    // Mask matches
-        //    if (mask == (mask | 1 << JumpMask))
-        //    {
-        //        canJump = true;
-        //    }
-        //}
+        // hmm?
+        canJump = false;
+        RaycastHit2D[] ray = Physics2D.RaycastAll(transform.position, Vector3.down * rb.gravityScale, groundCheck, JumpMask);
+        foreach( var h in ray )
+        {
+            if (h.rigidbody == rb) continue;
+            // in this case if it's not the player itself, then we're obvioulsy touching the ground at this point..
+            canJump = true;
+        }
 
+        #endregion
+
+        #region Animation
+        anim.SetBool("IsWalking", false);
+        anim.SetBool("IsFalling", false);
+        if (dir != 0)
+        {
+            anim.SetBool("IsWalking", true);
+        }
+
+        anim.SetBool("IsFalling", !canJump);
         #endregion
     }
 
@@ -343,10 +367,13 @@ public class PlayerController : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "LevelGround")
-        {
-            jumpCount = maxJumps;
-        }
+        //if (collision.gameObject.tag == "LevelGround")
+        //{
+        //    //Debug.Log($"{this.gameObject.name} -> {collision.contacts[0].normal}");
+        //    //if( ( playerOne && collision.contacts[0].normal == Vector2.up ) ||
+        //    //    ( !playerOne && collision.contacts[0].normal == Vector2.down ) )
+        //        jumpCount = maxJumps;
+        //}
 
         // this will be interesting..
         // if the block hits the player from the above in player 1
@@ -354,7 +381,7 @@ public class PlayerController : MonoBehaviour
         // pick up the block anyway. 
 
         // for now.... this seems to only work when you're player 1 at the moment....
-        if( playerOne && !IsHolding)
+        if ( playerOne && !IsHolding)
         {
             // check and see where the collision hits if the collision was coming from the top... 
             // do some weird mumbo jumbo script ehre to check and see if the block did hit from the top and everything all goes well    

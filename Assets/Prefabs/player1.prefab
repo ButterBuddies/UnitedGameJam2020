@@ -100,6 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7532090515147882043}
   - component: {fileID: 5306396212081362781}
+  - component: {fileID: 4719929334856354617}
   m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
@@ -116,7 +117,7 @@ Transform:
   m_GameObject: {fileID: 3718046668207486112}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.09, y: 0.09, z: 0.09}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 5338467250370612341}
   m_RootOrder: 2
@@ -160,7 +161,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 370105433536424795, guid: 3112840ba8e0b9a4287407a1359ae0ef, type: 3}
+  m_Sprite: {fileID: 6855084873964918315, guid: 395042950e2df2e47a17a5aa89af78ed,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -171,6 +173,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &4719929334856354617
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3718046668207486112}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2cc66eccf4a9724479df559d2f78db03, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5222048990430963494
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,19 +325,21 @@ MonoBehaviour:
   maxJumps: 1
   JumpMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   playerOne: 1
   Stop: {fileID: 6200000, guid: 34281e34cfe593546a26d8631afc7115, type: 2}
   Moving: {fileID: 6200000, guid: 6ced85d61ce7d6b418366f2b82b7d0d3, type: 2}
   HoldingTransformation: {fileID: 7138536754555011387}
   PickupPosition: {fileID: 6358796418017560322}
   DropoffPosition: {fileID: 5877406872045157998}
-  PickupMask:
-    serializedVersion: 2
-    m_Bits: 0
   isFaceRight: 1
   crouchHeight: 0.15
   blockSafeDistanceCheck: 0.5
+  groundCheck: 0.6
+  ShowDebug: 0
+  dropoffMask:
+    serializedVersion: 2
+    m_Bits: 311
 --- !u!114 &134714620
 MonoBehaviour:
   m_ObjectHideFlags: 0
