@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         // Hmm.
-        float rayDir = Mathf.Clamp( this.transform.position.x - DropoffPosition.position.x, -1, 1 ) * this.transform.localScale.x * blockSafeDistanceCheck;
+        float rayDir = Mathf.Clamp( this.transform.position.x - DropoffPosition.position.x, -1, 1 ) * blockSafeDistanceCheck;
         Gizmos.DrawRay(this.transform.position, Vector3.left * rayDir);
     }
 
@@ -151,7 +151,7 @@ public class PlayerController : MonoBehaviour
     {
         if (holding is null) return false;
 
-        float rayDir = Mathf.Clamp(this.transform.position.x - DropoffPosition.position.x, -1, 1) * this.transform.localScale.x * blockSafeDistanceCheck;
+        float rayDir = Mathf.Clamp(this.transform.position.x - DropoffPosition.position.x, -1, 1) * blockSafeDistanceCheck;
         Debug.Log(rayDir);
         RaycastHit2D[] hit = Physics2D.RaycastAll(this.transform.position, Vector2.left * rayDir, Vector2.Distance(this.transform.position, DropoffPosition.position));
         Collider2D c = this.GetComponent<Collider2D>();

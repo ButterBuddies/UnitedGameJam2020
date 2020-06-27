@@ -316,6 +316,7 @@ MonoBehaviour:
     m_Bits: 0
   isFaceRight: 1
   crouchHeight: 0.15
+  blockSafeDistanceCheck: 0.5
 --- !u!114 &134714620
 MonoBehaviour:
   m_ObjectHideFlags: 0
