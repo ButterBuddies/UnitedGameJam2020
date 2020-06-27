@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 2924138966230768503}
   - component: {fileID: 5658493356927698338}
   - component: {fileID: 7855909560287350759}
-  - component: {fileID: 2089439675563140149}
+  - component: {fileID: -4516828668473428131}
   m_Layer: 0
   m_Name: BlockWithConstantGrv
-  m_TagString: LevelGround
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
