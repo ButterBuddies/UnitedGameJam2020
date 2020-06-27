@@ -538,7 +538,7 @@ PrefabInstance:
     - target: {fileID: 522022084034885309, guid: 0742f5eb3afd98345b6bbf71f84f7432,
         type: 3}
       propertyPath: jump
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2365364244636477053, guid: 0742f5eb3afd98345b6bbf71f84f7432,
         type: 3}
@@ -1850,30 +1850,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6036187374712829368, guid: 78903e00b135d5e438fb45984dc77e65,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6036187374712829368, guid: 78903e00b135d5e438fb45984dc77e65,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6036187374712829368, guid: 78903e00b135d5e438fb45984dc77e65,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 8492989015703102880, guid: 78903e00b135d5e438fb45984dc77e65,
         type: 3}
       propertyPath: m_Name
       value: BlockWithConstantGrv (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8492989015703102880, guid: 78903e00b135d5e438fb45984dc77e65,
-        type: 3}
-      propertyPath: m_TagString
-      value: LevelGround
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78903e00b135d5e438fb45984dc77e65, type: 3}

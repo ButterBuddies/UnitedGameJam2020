@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
 
     public float speed = 5.0f;
-    public float jump = 5.0f;
+    public float jumpForce= 5.0f;
     public int maxJumps = 1;
     int jumpCount = 0;
     public LayerMask JumpMask;
@@ -164,7 +164,7 @@ public class PlayerController : MonoBehaviour
     {
 
         //GetComponent<Rigidbody2D>().velocity = transform.up * 10;
-        rb.AddForce(Vector3.up * rb.gravityScale * jump, ForceMode2D.Impulse);
+        rb.AddForce(Vector3.up * rb.gravityScale * jumpForce, ForceMode2D.Impulse);
         jumpCount -= 1;
         
             //canJump = false;
