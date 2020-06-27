@@ -9,6 +9,11 @@ public class Goal : MonoBehaviour
     private static bool player1InGoal;
     private static bool player2InGoal;
 
+    public void Start()
+    {
+        player1InGoal = false;
+        player2InGoal = false;
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
