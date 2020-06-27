@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - LevelGround
+  - ground
+  - Player1
+  - Player2
   layers:
   - Default
   - TransparentFX
@@ -14,7 +17,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - PickupObject
   - 
   - 
   - 
