@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3550651954818523834}
   - component: {fileID: 6293167483457404015}
   - component: {fileID: 4740480501423275287}
+  - component: {fileID: -775669740563639573}
   m_Layer: 0
   m_Name: player1
   m_TagString: Player1
@@ -130,3 +131,31 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-775669740563639573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7786718544826604653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc1e8e3a55a629e4b93c9573a4fedf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  jump: 5
+  maxJumps: 1
+  JumpMask:
+    serializedVersion: 2
+    m_Bits: 0
+  playerOne: 1
+  Stop: {fileID: 0}
+  Moving: {fileID: 0}
+  HoldingTransformation: {fileID: 0}
+  PickupPosition: {fileID: 0}
+  PickupMask:
+    serializedVersion: 2
+    m_Bits: 0
+  isFaceRight: 1
+  crouchHeight: 0.15
