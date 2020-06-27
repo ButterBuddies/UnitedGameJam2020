@@ -361,7 +361,7 @@ public class PlayerController : MonoBehaviour
             if (collision.contacts[0].normal == Vector2.down)
             {
                 PickupObject po = collision.gameObject.GetComponent<PickupObject>();
-                if( po.IsGreenBlock )
+                if( po != null && po.IsGreenBlock )
                     PickupObject(collision.gameObject);
             }   
         }
