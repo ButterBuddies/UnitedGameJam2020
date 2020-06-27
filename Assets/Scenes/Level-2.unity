@@ -948,6 +948,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NoGravBlock (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1934810648610218893, guid: 0fa4bf78687ad3d4d9d19bf1ac75abd0,
+        type: 3}
+      propertyPath: m_TagString
+      value: LevelGround
+      objectReference: {fileID: 0}
     - target: {fileID: 4377539399798076309, guid: 0fa4bf78687ad3d4d9d19bf1ac75abd0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1166,6 +1171,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NoGravBlock (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1934810648610218893, guid: 0fa4bf78687ad3d4d9d19bf1ac75abd0,
+        type: 3}
+      propertyPath: m_TagString
+      value: LevelGround
       objectReference: {fileID: 0}
     - target: {fileID: 4377539399798076309, guid: 0fa4bf78687ad3d4d9d19bf1ac75abd0,
         type: 3}
@@ -1419,6 +1429,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NoGravBlock
       objectReference: {fileID: 0}
+    - target: {fileID: 1934810648610218893, guid: 0fa4bf78687ad3d4d9d19bf1ac75abd0,
+        type: 3}
+      propertyPath: m_TagString
+      value: LevelGround
+      objectReference: {fileID: 0}
     - target: {fileID: 4377539399798076309, guid: 0fa4bf78687ad3d4d9d19bf1ac75abd0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1659,6 +1674,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NoGravBlock (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1934810648610218893, guid: 0fa4bf78687ad3d4d9d19bf1ac75abd0,
+        type: 3}
+      propertyPath: m_TagString
+      value: LevelGround
       objectReference: {fileID: 0}
     - target: {fileID: 4377539399798076309, guid: 0fa4bf78687ad3d4d9d19bf1ac75abd0,
         type: 3}
