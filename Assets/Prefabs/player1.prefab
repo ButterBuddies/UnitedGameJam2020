@@ -335,7 +335,7 @@ MonoBehaviour:
   isFaceRight: 1
   crouchHeight: 0.15
   blockSafeDistanceCheck: 0.5
-  groundCheck: 1
+  groundCheck: 0.6
   ShowDebug: 0
   dropoffMask:
     serializedVersion: 2

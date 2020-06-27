@@ -77,10 +77,7 @@ public class PlayerController : MonoBehaviour
         if (!ShowDebug) return;
 
         Gizmos.color = canJump ? Color.green : Color.red;
-        if( rb is null )
-            Gizmos.DrawRay(this.transform.position, Vector3.up * groundCheck);
-        else
-            Gizmos.DrawRay(this.transform.position, Vector3.up * rb.gravityScale * groundCheck);
+        Gizmos.DrawRay(this.transform.position, Vector3.down * ( rb?.gravityScale ?? 1 ) * groundCheck);
     }
 
     public void SwapPlayerWorld()
@@ -106,26 +103,24 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButtonDown("Jump"))
             {
-                if(jumpCount > 0)
-                {
+                //if(jumpCount > 0)
+                //{
                     Jump();
-                }
+                //}
             }
             Crouch(Input.GetButton("Crouch"));
-            //Jump(Input.GetButtonDown("Jump"));
         }
         else
         {
             dir = Input.GetAxis("HorizontalYang");
             if(Input.GetButtonDown("JumpYang"))
             {
-                if(jumpCount > 0)
-                {
+                //if(jumpCount > 0)
+                //{
                     Jump();
-                }
+                //}
             }
             Crouch(Input.GetButton("CrouchYang"));
-            //Jump(Input.GetButtonDown("JumpYang"));
         }
     }
 
@@ -275,12 +270,13 @@ public class PlayerController : MonoBehaviour
     
     private void Jump()
     {
+        if (!canJump) return;
         anim.SetTrigger("TriggerJump");
         // avoid jumping when holding objects.
         if (IsHolding) return;
         //GetComponent<Rigidbody2D>().velocity = transform.up * 10;
         rb.AddForce(Vector3.up * rb.gravityScale * jumpForce, ForceMode2D.Impulse);
-        jumpCount -= 1;
+        //jumpCount -= 1;
         
             //canJump = false;
         
@@ -332,6 +328,7 @@ public class PlayerController : MonoBehaviour
 
         #region Check Ground
 
+        // hmm?
         canJump = false;
         RaycastHit2D[] ray = Physics2D.RaycastAll(transform.position, Vector3.down * rb.gravityScale, groundCheck, JumpMask);
         foreach( var h in ray )
@@ -361,13 +358,13 @@ public class PlayerController : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "LevelGround")
-        {
-            //Debug.Log($"{this.gameObject.name} -> {collision.contacts[0].normal}");
-            //if( ( playerOne && collision.contacts[0].normal == Vector2.up ) ||
-            //    ( !playerOne && collision.contacts[0].normal == Vector2.down ) )
-                jumpCount = maxJumps;
-        }
+        //if (collision.gameObject.tag == "LevelGround")
+        //{
+        //    //Debug.Log($"{this.gameObject.name} -> {collision.contacts[0].normal}");
+        //    //if( ( playerOne && collision.contacts[0].normal == Vector2.up ) ||
+        //    //    ( !playerOne && collision.contacts[0].normal == Vector2.down ) )
+        //        jumpCount = maxJumps;
+        //}
 
         // this will be interesting..
         // if the block hits the player from the above in player 1
