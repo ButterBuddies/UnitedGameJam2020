@@ -12,7 +12,7 @@ public class Teleporter : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (!waitingForCoolDown)
+        if (!waitingForCoolDown && !other.gameObject.tag.Contains("Player"))
         {
             other.transform.position = otherEndOfTeleporter.transform.position;
             waitingForCoolDown = true;
