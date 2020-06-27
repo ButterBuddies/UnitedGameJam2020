@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jump: 5
+  jumpForce: 4
   maxJumps: 1
   JumpMask:
     serializedVersion: 2
