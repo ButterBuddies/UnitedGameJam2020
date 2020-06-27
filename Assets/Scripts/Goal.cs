@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Goal : MonoBehaviour
 {
+    [SerializeField] GameObject winScreen;
+
     private static bool player1InGoal;
     private static bool player2InGoal;
 
@@ -16,7 +18,7 @@ public class Goal : MonoBehaviour
             player2InGoal = true;
 
         if (player1InGoal && player2InGoal)
-            Debug.Log("WOW both players touching the goal, you win!");
+            winScreen.SetActive(true);
     }
 
     void OnTriggerExit2D(Collider2D other)
