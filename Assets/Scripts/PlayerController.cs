@@ -288,13 +288,18 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void FixedUpdate()
     {
-
-        #region Movement
+        #region Animation
         anim.SetBool("IsWalking", false);
+
         if (dir != 0)
         {
             anim.SetBool("IsWalking", true);
         }
+        
+        anim.SetBool("IsFalling", !canJump);
+        #endregion
+
+        #region Movement
 
         if ( dir < 0 && faceRight )
         {
