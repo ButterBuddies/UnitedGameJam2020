@@ -338,6 +338,11 @@ MonoBehaviour:
   isFaceRight: 1
   crouchHeight: 0.15
   blockSafeDistanceCheck: 0.5
+  groundCheck: 1
+  ShowDebug: 0
+  dropoffMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &134714620
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,10 +11,11 @@ public class PlayerController : MonoBehaviour
     public float jumpForce= 5.0f;
     public int maxJumps = 1;
     int jumpCount = 0;
-    public LayerMask JumpMask;
-    //public string horizontalVar = "Horizontal";
-    //public string jumpVar = "Jump";
+    public LayerMask JumpMask;  // er?
+    // invertly flips the controls
     public bool playerOne = true;
+
+    // To control how the physics responds to the character movement.
     public PhysicsMaterial2D Stop;
     public PhysicsMaterial2D Moving;
 
@@ -22,8 +23,6 @@ public class PlayerController : MonoBehaviour
     public Transform HoldingTransformation;
     public Transform PickupPosition;
     public Transform DropoffPosition;
-
-    public LayerMask PickupMask;
 
     public bool isFaceRight = true;
     private bool faceRight = true;
@@ -50,10 +49,13 @@ public class PlayerController : MonoBehaviour
     public float blockSafeDistanceCheck;
 
     private Animator anim;
+    public float groundCheck = 1.0f;
+
+    public bool ShowDebug = false;
+    public LayerMask dropoffMask;
 
     private void Start()
     {
-
         // set metadata for the offset at start.
         //pickupOffset = PickupPosition.position;
         //holdingOffset = HoldingTransformation.position;
@@ -68,6 +70,17 @@ public class PlayerController : MonoBehaviour
         {
             FlipSprite();
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (!ShowDebug) return;
+
+        Gizmos.color = canJump ? Color.green : Color.red;
+        if( rb is null )
+            Gizmos.DrawRay(this.transform.position, Vector3.up * groundCheck);
+        else
+            Gizmos.DrawRay(this.transform.position, Vector3.up * rb.gravityScale * groundCheck);
     }
 
     public void SwapPlayerWorld()
@@ -163,7 +176,7 @@ public class PlayerController : MonoBehaviour
 
         float rayDir = Mathf.Clamp(this.transform.position.x - DropoffPosition.position.x, -1, 1) * blockSafeDistanceCheck;
         Debug.Log(rayDir);
-        RaycastHit2D[] hit = Physics2D.RaycastAll(this.transform.position, Vector2.left * rayDir, Vector2.Distance(this.transform.position, DropoffPosition.position));
+        RaycastHit2D[] hit = Physics2D.RaycastAll(this.transform.position, Vector2.left * rayDir, Vector2.Distance(this.transform.position, DropoffPosition.position), dropoffMask);
         Collider2D c = this.GetComponent<Collider2D>();
 
         // I DETECT SOMETHING! PREVENT PUTTING DA BLOCK DOWN!!!
@@ -319,20 +332,14 @@ public class PlayerController : MonoBehaviour
 
         #region Check Ground
 
-        //if ( col is null )
-        //{
-        //    canJump = false;
-        //}
-        //else
-        //{
-        //    // Hmm we need to be able to filter just the ground for this? Solve this by checking if the y velocity is zero
-        //    int mask = col.gameObject.layer;
-        //    // Mask matches
-        //    if (mask == (mask | 1 << JumpMask))
-        //    {
-        //        canJump = true;
-        //    }
-        //}
+        canJump = false;
+        RaycastHit2D[] ray = Physics2D.RaycastAll(transform.position, Vector3.up * rb.gravityScale, groundCheck, JumpMask);
+        foreach( var h in ray )
+        {
+            if (h.rigidbody == rb) continue;
+            // in this case if it's not the player itself, then we're obvioulsy touching the ground at this point..
+            canJump = true;
+        }
 
         #endregion
     }
