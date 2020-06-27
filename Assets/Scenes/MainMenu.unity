@@ -2641,7 +2641,7 @@ GameObject:
   - component: {fileID: 1051498934}
   - component: {fileID: 1051498933}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3930,7 +3930,7 @@ GameObject:
   - component: {fileID: 1367791267}
   - component: {fileID: 1367791266}
   m_Layer: 5
-  m_Name: Begin
+  m_Name: Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5268,8 +5268,8 @@ MonoBehaviour:
 
     SunnyBun - Programmer
 
-    Regretful
-    - Programmer++
+    Jordan
+    Bejar - Programmer++
 
     Final - Project Manager'
 --- !u!222 &1900609569
@@ -5820,7 +5820,7 @@ Transform:
   - {fileID: 1789745670}
   - {fileID: 1036314551}
   m_Father: {fileID: 576593845}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!66 &2071162777
 CompositeCollider2D:
