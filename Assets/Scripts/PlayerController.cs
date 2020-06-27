@@ -335,7 +335,7 @@ public class PlayerController : MonoBehaviour
         #region Check Ground
 
         canJump = false;
-        RaycastHit2D[] ray = Physics2D.RaycastAll(transform.position, Vector3.up * rb.gravityScale, groundCheck, JumpMask);
+        RaycastHit2D[] ray = Physics2D.RaycastAll(transform.position, Vector3.down * rb.gravityScale, groundCheck, JumpMask);
         foreach( var h in ray )
         {
             if (h.rigidbody == rb) continue;
