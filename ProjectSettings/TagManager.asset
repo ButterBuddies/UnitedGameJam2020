@@ -6,6 +6,7 @@ TagManager:
   tags:
   - LevelGround
   - ground
+  - PickupObject
   - Player1
   - Player2
   layers:

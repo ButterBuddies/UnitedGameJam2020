@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75836287880439065}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.79, y: 1.33, z: 0}
   m_LocalScale: {x: 1, y: 4, z: 2}
   m_Children:
@@ -219,7 +219,8 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0.33333334
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2664899473695590677, guid: 23a6d782ead454e4585b9568e55dadfd, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 23a6d782ead454e4585b9568e55dadfd, type: 3}
 --- !u!4 &2816047600995412241 stripped
 Transform:

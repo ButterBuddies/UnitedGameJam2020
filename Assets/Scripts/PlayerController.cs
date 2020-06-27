@@ -119,26 +119,28 @@ public class PlayerController : MonoBehaviour
                     RaycastHit2D[] hit = Physics2D.RaycastAll(PickupPosition.position, Vector2.up * 0.01f);
                     foreach ( var h in hit )
                     {
+                        // skip itself.
                         if (h.transform == PickupPosition)
                             continue;
-                        //int mask = h.transform.gameObject.layer;
-                        //if (mask == ( mask | 1 << PickupMask) )
-                        //{
-                        holding = h.collider.gameObject;
-                        holding.transform.position = HoldingTransformation.position;
-                        Rigidbody2D temp = holding.GetComponent<Rigidbody2D>();
-                        if(temp != null )
+                        PickupObject po = h.transform.GetComponent<PickupObject>();
+                        // only pick up when it's a tag as pickupObject instead.
+                        if ( po != null )
                         {
-                            // create a temp holder in case we need to let go of these blocks
-                            holdingConstraintSettings = temp.constraints;
-                            holdingfreezeRotation = temp.freezeRotation;
+                            holding = h.collider.gameObject;
+                            holding.transform.position = HoldingTransformation.position;
+                            Rigidbody2D temp = holding.GetComponent<Rigidbody2D>();
+                            if (temp != null)
+                            {
+                                // create a temp holder in case we need to let go of these blocks
+                                holdingConstraintSettings = temp.constraints;
+                                holdingfreezeRotation = temp.freezeRotation;
 
-                            // freeze the blocks and have it parent ot the object.
-                            temp.constraints = RigidbodyConstraints2D.FreezeAll;
-                            temp.freezeRotation = true;
+                                // freeze the blocks and have it parent ot the object.
+                                temp.constraints = RigidbodyConstraints2D.FreezeAll;
+                                temp.freezeRotation = true;
+                            }
+                            break;
                         }
-                        break;
-                        //}
                     }
                 }
         }
