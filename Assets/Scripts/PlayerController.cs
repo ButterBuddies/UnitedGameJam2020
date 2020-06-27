@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
     private bool isCrouching;
     public float crouchHeight = 0.5f;
     private float orgHeight;
+    public float blockSafeDistanceCheck;
 
     private void Start()
     {
@@ -138,9 +139,33 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        // Hmm.
+        float rayDir = Mathf.Clamp( this.transform.position.x - DropoffPosition.position.x, -1, 1 ) * this.transform.localScale.x * blockSafeDistanceCheck;
+        Gizmos.DrawRay(this.transform.position, Vector3.left * rayDir);
+    }
+
     private bool DropoffObject()
     {
-        if (holding is null) return false;  //?? hmmm interesting!
+        if (holding is null) return false;
+
+        float rayDir = Mathf.Clamp(this.transform.position.x - DropoffPosition.position.x, -1, 1) * this.transform.localScale.x * blockSafeDistanceCheck;
+        Debug.Log(rayDir);
+        RaycastHit2D[] hit = Physics2D.RaycastAll(this.transform.position, Vector2.left * rayDir, Vector2.Distance(this.transform.position, DropoffPosition.position));
+        Collider2D c = this.GetComponent<Collider2D>();
+
+        // I DETECT SOMETHING! PREVENT PUTTING DA BLOCK DOWN!!!
+        foreach (var h in hit)
+        {
+            Debug.Log(h.collider.gameObject.name);
+            // this sounds expensive....
+            if (h.collider == c)
+                continue;
+            if (h)
+                return false;
+        }
 
         holding.transform.position = DropoffPosition?.position ?? PickupPosition.position;
         Rigidbody2D temp = holding.GetComponent<Rigidbody2D>();
@@ -255,8 +280,11 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector2 velocity = rb.velocity;
-        velocity.x = dir * speed;
-        rb.velocity = velocity;
+        if ( ( !playerOne && !IsHolding ) || playerOne)
+        {
+            velocity.x = dir * speed;
+            rb.velocity = velocity;
+        }
         // If the player is upside down we want to move the block across as if it was surfing through the air...
         if(belowFeet != null )
         {
@@ -328,7 +356,7 @@ public class PlayerController : MonoBehaviour
 
         // This works great, but now we need to move the block if the player under the block's feet....
 
-        Debug.Log($"{this.name}-> Collider:{collision.gameObject.name} -> PlayerOne:{playerOne} -> Collision Normal: {collision.contacts[0].normal}");
+        //Debug.Log($"{this.name}-> Collider:{collision.gameObject.name} -> PlayerOne:{playerOne} -> Collision Normal: {collision.contacts[0].normal}");
         if ( !playerOne )
         {
             // if the object is still colliding as normal vector2.down, then we need to apply physics motion as the player moves across...
