@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PickupObject : MonoBehaviour
 {
+    public bool IsGreenBlock;
+    public bool IsLock = false;
     // Start is called before the first frame update
     /*
 

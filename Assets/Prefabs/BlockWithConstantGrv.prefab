@@ -143,3 +143,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb92439bbcc64804dae93de57d2b1086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsGreenBlock: 1

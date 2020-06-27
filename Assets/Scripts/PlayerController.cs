@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     private bool faceRight = true;
 
     // object used to hold.
-    private GameObject holding;
+    private PickupObject holding;
     private Rigidbody2D belowFeet;
     /// <summary>
     /// Return true if the player is holding object, false if none.
@@ -115,11 +115,11 @@ public class PlayerController : MonoBehaviour
     {
         // safeguard in case we would try and pick up multiple of object?
         if (holding != null) return true;
-        PickupObject po = go.GetComponent<PickupObject>();
+        holding = go.GetComponent<PickupObject>();
         // only pick up when it's a tag as pickupObject instead.
-        if (po != null)
+        if (holding != null && holding.IsLock == false )
         {
-            holding = go;
+            holding.IsLock = true;
             holding.transform.position = HoldingTransformation.position;
             Rigidbody2D temp = holding.GetComponent<Rigidbody2D>();
             if (temp != null)
@@ -174,6 +174,7 @@ public class PlayerController : MonoBehaviour
             temp.freezeRotation = holdingfreezeRotation;
             temp.constraints = holdingConstraintSettings;
         }
+        holding.IsLock = false;
         holding = null;
         CheckGravityCondition();
 
@@ -184,6 +185,7 @@ public class PlayerController : MonoBehaviour
     {
         // If you are player one AND still holding block, then make sure your gravity is not affected by sarah's script.
         // in this case, the proper gravity scale should be set to 1. 
+        if (!holding?.IsGreenBlock ?? false ) return;
         if( playerOne && IsHolding && rb.gravityScale < 0 )
         {
             // make sure that the rigidbody 
@@ -280,13 +282,13 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector2 velocity = rb.velocity;
-        if ( ( !playerOne && !IsHolding ) || playerOne)
+        if (CanMove())
         {
             velocity.x = dir * speed;
             rb.velocity = velocity;
         }
         // If the player is upside down we want to move the block across as if it was surfing through the air...
-        if(belowFeet != null )
+        if( belowFeet != null )
         {
             belowFeet.velocity = velocity;
         }
@@ -324,6 +326,14 @@ public class PlayerController : MonoBehaviour
         #endregion
     }
 
+    private bool CanMove()
+    {
+        if (!playerOne && IsHolding && holding.IsGreenBlock)
+            return false;
+        return true;
+        
+    }
+
     private void FlipSprite()
     {
         Vector3 scale = this.transform.localScale;
@@ -350,7 +360,9 @@ public class PlayerController : MonoBehaviour
             // do some weird mumbo jumbo script ehre to check and see if the block did hit from the top and everything all goes well    
             if (collision.contacts[0].normal == Vector2.down)
             {
-                PickupObject(collision.gameObject);
+                PickupObject po = collision.gameObject.GetComponent<PickupObject>();
+                if( po.IsGreenBlock )
+                    PickupObject(collision.gameObject);
             }   
         }
 
