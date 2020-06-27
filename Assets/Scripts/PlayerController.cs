@@ -162,15 +162,13 @@ public class PlayerController : MonoBehaviour
     
     private void Jump()
     {
-        
-        GetComponent<Rigidbody2D>().velocity = transform.up * 10;
-        jumpCount -= 1;
-        /*if( canJump && v )
-        {
 
-            //rb.AddForce(Vector3.up * rb.gravityScale * jump, ForceMode2D.Impulse);
+        //GetComponent<Rigidbody2D>().velocity = transform.up * 10;
+        rb.AddForce(Vector3.up * rb.gravityScale * jump, ForceMode2D.Impulse);
+        jumpCount -= 1;
+        
             //canJump = false;
-        }*/
+        
     }
 
     public void FixedUpdate()

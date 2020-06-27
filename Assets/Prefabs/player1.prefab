@@ -253,7 +253,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   isFaceRight: 1
-  crouchHeight: 0.8
+  crouchHeight: 0.15
 --- !u!114 &134714620
 MonoBehaviour:
   m_ObjectHideFlags: 0
