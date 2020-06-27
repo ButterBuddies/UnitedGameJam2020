@@ -10,7 +10,7 @@ public class Teleporter : MonoBehaviour
 
     public GameObject otherEndOfTeleporter;
 
-    void OnCollisionEnter2D(Collision2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (!waitingForCoolDown && !other.gameObject.tag.Contains("Player"))
         {

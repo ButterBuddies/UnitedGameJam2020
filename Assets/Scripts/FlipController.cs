@@ -49,15 +49,14 @@ public class FlipController : MonoBehaviour
         }
 
         // JB - Loop all playercontroller and then invert boolean value.
-        playerControllers.ToList().ForEach(x => x.playerOne = !x.playerOne);
-    }
+        playerControllers.ToList().ForEach(x => x.SwapPlayerWorld());
+    }   
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            Debug.Log("pressed flip button");
             flipAxis.gameObject.transform.localScale = new Vector3(1, flip, 1);
 
             if (flip == 1)

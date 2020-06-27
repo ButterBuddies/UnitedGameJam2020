@@ -30,6 +30,12 @@ public class PlayerController : MonoBehaviour
 
     // object used to hold.
     private GameObject holding;
+    private Rigidbody2D belowFeet;
+    /// <summary>
+    /// Return true if the player is holding object, false if none.
+    /// </summary>
+    private bool IsHolding => !(holding is null);
+    
     private bool holdingfreezeRotation;
     private RigidbodyConstraints2D holdingConstraintSettings;
 
@@ -48,6 +54,7 @@ public class PlayerController : MonoBehaviour
         //pickupOffset = PickupPosition.position;
         //holdingOffset = HoldingTransformation.position;
 
+        
         jumpCount = maxJumps;
         rb = this.GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
@@ -57,6 +64,14 @@ public class PlayerController : MonoBehaviour
         {
             FlipSprite();
         }
+    }
+
+    public void SwapPlayerWorld()
+    {
+        playerOne = !playerOne;
+        CheckGravityCondition();
+        if (belowFeet != null)
+            belowFeet = null;
     }
 
     // Update is called once per frame
@@ -90,6 +105,78 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Tell the player to pick up the object
+    /// </summary>
+    /// <param name="go"></param>
+    /// <returns></returns>
+    private bool PickupObject(GameObject go )
+    {
+        // safeguard in case we would try and pick up multiple of object?
+        if (holding != null) return true;
+        PickupObject po = go.GetComponent<PickupObject>();
+        // only pick up when it's a tag as pickupObject instead.
+        if (po != null)
+        {
+            holding = go;
+            holding.transform.position = HoldingTransformation.position;
+            Rigidbody2D temp = holding.GetComponent<Rigidbody2D>();
+            if (temp != null)
+            {
+                // create a temp holder in case we need to let go of these blocks
+                holdingConstraintSettings = temp.constraints;
+                holdingfreezeRotation = temp.freezeRotation;
+
+                // freeze the blocks and have it parent ot the object.
+                temp.constraints = RigidbodyConstraints2D.FreezeAll;
+                temp.freezeRotation = true;
+            }
+            CheckGravityCondition();
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool DropoffObject()
+    {
+        if (holding is null) return false;  //?? hmmm interesting!
+
+        holding.transform.position = DropoffPosition?.position ?? PickupPosition.position;
+        Rigidbody2D temp = holding.GetComponent<Rigidbody2D>();
+        if (temp != null)
+        {
+            temp.freezeRotation = holdingfreezeRotation;
+            temp.constraints = holdingConstraintSettings;
+        }
+        holding = null;
+        CheckGravityCondition();
+
+        return true;
+    }
+
+    private void CheckGravityCondition()
+    {
+        // If you are player one AND still holding block, then make sure your gravity is not affected by sarah's script.
+        // in this case, the proper gravity scale should be set to 1. 
+        if( playerOne && IsHolding && rb.gravityScale < 0 )
+        {
+            // make sure that the rigidbody 
+            rb.gravityScale = -rb.gravityScale;
+        }
+        
+        // If you are not player one AND you are holding a block in your hand, but also the gravityscale is negative 1, set it to positive one by game design.
+        // in this case the proper gravity scale should be set to -1 otherwise make it 1
+        if( !playerOne && IsHolding && rb.gravityScale < 0 )
+        {
+            rb.gravityScale = -rb.gravityScale;
+        }
+        else if( !playerOne && !IsHolding && rb.gravityScale > 0 )
+        {
+            rb.gravityScale = -rb.gravityScale;
+        }
+    }
+
     private void Crouch(bool v)
     {
         // in this case we can just simply do two things. 
@@ -110,14 +197,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (holding != null)
                 {
-                    holding.transform.position = DropoffPosition?.position ?? PickupPosition.position;
-                    Rigidbody2D temp = holding.GetComponent<Rigidbody2D>();
-                    if(temp != null )
-                    {
-                        temp.freezeRotation = holdingfreezeRotation;
-                        temp.constraints = holdingConstraintSettings;
-                    }
-                    holding = null;
+                    DropoffObject();
                 }
                 else
                 {
@@ -127,25 +207,8 @@ public class PlayerController : MonoBehaviour
                         // skip itself.
                         if (h.transform == PickupPosition)
                             continue;
-                        PickupObject po = h.transform.GetComponent<PickupObject>();
-                        // only pick up when it's a tag as pickupObject instead.
-                        if ( po != null )
-                        {
-                            holding = h.collider.gameObject;
-                            holding.transform.position = HoldingTransformation.position;
-                            Rigidbody2D temp = holding.GetComponent<Rigidbody2D>();
-                            if (temp != null)
-                            {
-                                // create a temp holder in case we need to let go of these blocks
-                                holdingConstraintSettings = temp.constraints;
-                                holdingfreezeRotation = temp.freezeRotation;
-
-                                // freeze the blocks and have it parent ot the object.
-                                temp.constraints = RigidbodyConstraints2D.FreezeAll;
-                                temp.freezeRotation = true;
-                            }
+                        if (PickupObject(h.transform.gameObject))
                             break;
-                        }
                     }
                 }
         }
@@ -163,7 +226,7 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         // avoid jumping when holding objects.
-        if (holding != null) return;
+        if (IsHolding) return;
         //GetComponent<Rigidbody2D>().velocity = transform.up * 10;
         rb.AddForce(Vector3.up * rb.gravityScale * jumpForce, ForceMode2D.Impulse);
         jumpCount -= 1;
@@ -172,6 +235,9 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Main controller movement.
+    /// </summary>
     public void FixedUpdate()
     {
 
@@ -191,6 +257,11 @@ public class PlayerController : MonoBehaviour
         Vector2 velocity = rb.velocity;
         velocity.x = dir * speed;
         rb.velocity = velocity;
+        // If the player is upside down we want to move the block across as if it was surfing through the air...
+        if(belowFeet != null )
+        {
+            belowFeet.velocity = velocity;
+        }
         // adjust the physical material to make the movement more smooth.
         rb.sharedMaterial = velocity.magnitude > 0 ? Moving : Stop;
 
@@ -238,12 +309,42 @@ public class PlayerController : MonoBehaviour
         {
             jumpCount = maxJumps;
         }
-    }
+
+        // this will be interesting..
+        // if the block hits the player from the above in player 1
+        // Or if the block hits the player from the bottom in player 2
+        // pick up the block anyway. 
+
+        // for now.... this seems to only work when you're player 1 at the moment....
+        if( playerOne && !IsHolding)
+        {
+            // check and see where the collision hits if the collision was coming from the top... 
+            // do some weird mumbo jumbo script ehre to check and see if the block did hit from the top and everything all goes well    
+            if (collision.contacts[0].normal == Vector2.down)
+            {
+                PickupObject(collision.gameObject);
+            }   
+        }
+
+        // This works great, but now we need to move the block if the player under the block's feet....
+
+        Debug.Log($"{this.name}-> Collider:{collision.gameObject.name} -> PlayerOne:{playerOne} -> Collision Normal: {collision.contacts[0].normal}");
+        if ( !playerOne )
+        {
+            // if the object is still colliding as normal vector2.down, then we need to apply physics motion as the player moves across...
+            if ( collision.contacts[0].normal == Vector2.down && collision.collider.GetComponent<PickupObject>())
+            {
+                belowFeet = collision.rigidbody;
+            }
+        }
+    }   
 
     // once you leave the object, then set it to null..
-    /*public void OnCollisionExit2D(Collision2D collision)
+    public void OnCollisionExit2D(Collision2D collision)
     {
-        if( col == collision )
-            col = null;
-    }*/
+        if (collision.rigidbody == belowFeet)
+        {
+            belowFeet = null;
+        }
+    }
 }
