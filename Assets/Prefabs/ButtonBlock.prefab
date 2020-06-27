@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 958435468132604774}
   m_Layer: 0
   m_Name: ButtonBlock
-  m_TagString: Untagged
+  m_TagString: LevelGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
