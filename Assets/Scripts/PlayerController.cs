@@ -136,7 +136,8 @@ public class PlayerController : MonoBehaviour
         // only pick up when it's a tag as pickupObject instead.
         if (holding != null && holding.IsLock == false )
         {
-            sound.PlayPickup();
+            if(sound !=null )
+                sound.PlayPickup();
             holding.IsLock = true;
             holding.transform.position = HoldingTransformation.position;
             Rigidbody2D temp = holding.GetComponent<Rigidbody2D>();
@@ -183,7 +184,8 @@ public class PlayerController : MonoBehaviour
                 continue;
             if (h)
             {
-                sound.PlayNegative();
+                if (sound != null)
+                    sound.PlayNegative();
                 return false;
             }
         }
@@ -278,7 +280,8 @@ public class PlayerController : MonoBehaviour
         if (IsHolding) return;
         //GetComponent<Rigidbody2D>().velocity = transform.up * 10;
         rb.AddForce(Vector3.up * rb.gravityScale * jumpForce, ForceMode2D.Impulse);
-        sound.PlayJump();
+        if (sound != null)
+            sound.PlayJump();
         //jumpCount -= 1;
         //canJump = false;   
     }
@@ -355,8 +358,10 @@ public class PlayerController : MonoBehaviour
         #endregion
 
         #region Sound
-
-        sound.PlayWalkingToggle(dir != 0);
+        
+        // Blame sarah for not catching null exception
+        if( sound != null )
+            sound.PlayWalkingToggle( dir != 0 );  
         
         #endregion
     }
