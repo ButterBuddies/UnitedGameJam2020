@@ -5,6 +5,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Collider2D))]
 public class ButtonTrigger : MonoBehaviour
 {
+    private SpriteRenderer btnSprite;
     public bool IsUnlocked = true;
     public UnityEvent EnterTouch;
     public UnityEvent ExitTouch;
@@ -19,6 +20,7 @@ public class ButtonTrigger : MonoBehaviour
     public void Start()
     {
         audio = GetComponent<AudioSource>();
+        btnSprite = GetComponent<SpriteRenderer>();
     }
 
     // invoke when is touched
@@ -32,6 +34,7 @@ public class ButtonTrigger : MonoBehaviour
         {
             // Invoke the event set.
             EnterTouch.Invoke();
+            btnSprite.enabled = false;
             audio.Play();
             counter++;
             // Debug logs in case we need to see it working.
@@ -68,5 +71,6 @@ public class ButtonTrigger : MonoBehaviour
     {
         ExitAll.Invoke();
         audio.Play();
+        btnSprite.enabled = true;
     }
 }
