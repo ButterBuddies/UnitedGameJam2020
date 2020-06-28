@@ -802,7 +802,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 224}
-  m_SizeDelta: {x: 600, y: 100}
+  m_SizeDelta: {x: 729.1, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8557691061848430575
 CanvasRenderer:
@@ -1016,3 +1016,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transition: {fileID: 0}
   transitionTime: 1
+  ControlMenu: {fileID: 0}
