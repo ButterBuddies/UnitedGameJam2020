@@ -4878,6 +4878,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   winScreen: {fileID: 0}
+  SkipShowingWinScreen: 0
 --- !u!82 &2171229218452057547
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4887,7 +4888,8 @@ AudioSource:
   m_GameObject: {fileID: 3298441033381214736}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 4242437174052654696, guid: e64bb96138467854ba86a5982b76b9b0,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: b7703f9269a8eb0458e5376d81a011c4, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
