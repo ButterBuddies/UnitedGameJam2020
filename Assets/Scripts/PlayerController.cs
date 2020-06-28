@@ -3,10 +3,11 @@ using UnityEngine;
 
 // needs rigidbody!
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(AudioSource))]
 public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
-
+    public PlayerSounds sound;
     public float speed = 5.0f;
     public float jumpForce= 5.0f;
     public int maxJumps = 1;
@@ -135,6 +136,7 @@ public class PlayerController : MonoBehaviour
         // only pick up when it's a tag as pickupObject instead.
         if (holding != null && holding.IsLock == false )
         {
+            sound.PlayPickup();
             holding.IsLock = true;
             holding.transform.position = HoldingTransformation.position;
             Rigidbody2D temp = holding.GetComponent<Rigidbody2D>();
@@ -175,14 +177,18 @@ public class PlayerController : MonoBehaviour
         // I DETECT SOMETHING! PREVENT PUTTING DA BLOCK DOWN!!!
         foreach (var h in hit)
         {
-            Debug.Log(h.collider.gameObject.name);
+            //Debug.Log(h.collider.gameObject.name);
             // this sounds expensive....
             if (h.collider == c)
                 continue;
             if (h)
+            {
+                sound.PlayNegative();
                 return false;
+            }
         }
 
+        sound.PlayDrop();
         holding.transform.position = DropoffPosition?.position ?? PickupPosition.position;
         Rigidbody2D temp = holding.GetComponent<Rigidbody2D>();
         if (temp != null)
@@ -267,12 +273,14 @@ public class PlayerController : MonoBehaviour
     {
         if (!canJump) return;
 
+
         // avoid jumping when holding objects.
         if (IsHolding) return;
         //GetComponent<Rigidbody2D>().velocity = transform.up * 10;
         rb.AddForce(Vector3.up * rb.gravityScale * jumpForce, ForceMode2D.Impulse);
+        sound.PlayJump();
         //jumpCount -= 1;
-            //canJump = false;   
+        //canJump = false;   
     }
 
     /// <summary>
@@ -344,6 +352,12 @@ public class PlayerController : MonoBehaviour
 
         anim.SetBool("IsFalling", !canJump);
 
+        #endregion
+
+        #region Sound
+
+        sound.PlayWalkingToggle(dir != 0);
+        
         #endregion
     }
 
