@@ -391,17 +391,15 @@ public class PlayerController : MonoBehaviour
         }
 
         // This works great, but now we need to move the block if the player under the block's feet....
-
-        //Debug.Log($"{this.name}-> Collider:{collision.gameObject.name} -> PlayerOne:{playerOne} -> Collision Normal: {collision.contacts[0].normal}");
-        if ( !playerOne )
-        {
-            // if the object is still colliding as normal vector2.down, then we need to apply physics motion as the player moves across...
-            if ( collision.contacts[0].normal == Vector2.down && collision.collider.GetComponent<PickupObject>())
-            {
-                belowFeet = collision.rigidbody;
-            }
-        }
-    }   
+        //if ( !playerOne )
+        //{
+        //    // if the object is still colliding as normal vector2.down, then we need to apply physics motion as the player moves across...
+        //    if ( collision.contacts[0].normal == Vector2.down && collision.collider.GetComponent<PickupObject>())
+        //    {
+        //        belowFeet = collision.rigidbody;
+        //    }
+        //}
+    }       
 
     // once you leave the object, then set it to null..
     public void OnCollisionExit2D(Collision2D collision)
@@ -409,6 +407,18 @@ public class PlayerController : MonoBehaviour
         if (collision.rigidbody == belowFeet)
         {
             belowFeet = null;
+        }
+    }
+
+    public void OnCollisionStay2D(Collision2D collision)
+    {
+        if (!playerOne)
+        {
+            // if the object is still colliding as normal vector2.down, then we need to apply physics motion as the player moves across...
+            if (collision.contacts[0].normal == Vector2.down && collision.collider.GetComponent<PickupObject>())
+            {
+                belowFeet = collision.rigidbody;
+            }
         }
     }
 }
