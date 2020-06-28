@@ -38,6 +38,11 @@ public class LevelLoader : MonoBehaviour
                 displayControl = false;
             ControlMenu.SetActive(displayControl);
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            LoadNextLevel();
+        }
     }
 
     public void LoadMainMenu()
