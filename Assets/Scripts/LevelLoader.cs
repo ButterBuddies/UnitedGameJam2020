@@ -47,14 +47,7 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        try
-        { 
-            StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
-        }
-        catch   // suggested what Gene did... TRY AND CATCH MOFO!!
-        {
-            LoadMainMenu();
-        }
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
     public void Restart()
@@ -69,6 +62,13 @@ public class LevelLoader : MonoBehaviour
         transition?.gameObject?.SetActive(true);
         transition?.SetTrigger("StartAnim");
         yield return new WaitForSeconds(transitionTime);
-        SceneManager.LoadScene(levelIndex);
+        try
+        { 
+            SceneManager.LoadScene(levelIndex);
+        }
+        catch   // suggested what Gene did... TRY AND CATCH MOFO!!
+        {
+            LoadMainMenu();
+        }
     }
 }
