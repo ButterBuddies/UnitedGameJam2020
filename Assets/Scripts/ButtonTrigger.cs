@@ -14,6 +14,12 @@ public class ButtonTrigger : MonoBehaviour
     public bool ShowDebug = false;
 
     private int counter = 0;
+    private AudioSource audio;
+
+    public void Start()
+    {
+        audio = GetComponent<AudioSource>();
+    }
 
     // invoke when is touched
     public void OnTriggerEnter2D(Collider2D collision)
@@ -26,6 +32,7 @@ public class ButtonTrigger : MonoBehaviour
         {
             // Invoke the event set.
             EnterTouch.Invoke();
+            audio.Play();
             counter++;
             // Debug logs in case we need to see it working.
             if ( ShowDebug)
@@ -60,5 +67,6 @@ public class ButtonTrigger : MonoBehaviour
     public void OnTriggerExitAll2D()
     {
         ExitAll.Invoke();
+        audio.Play();
     }
 }

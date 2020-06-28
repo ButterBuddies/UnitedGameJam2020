@@ -3,6 +3,7 @@ using System.Linq;
 
 public class FlipController : MonoBehaviour
 {
+    private AudioSource audio;
     public GameObject flipAxis;
     public GameObject yinGroupHolder;
     public GameObject yangGroupHolder;
@@ -18,6 +19,7 @@ public class FlipController : MonoBehaviour
     
     public void Start() //gets the yin and yang groups based on the group holders children in the hierarchy
     {
+        audio = GetComponent<AudioSource>();
         yinGroup = new GameObject[yinGroupHolder.transform.childCount];
 
         for (int i = 0; i < yinGroupHolder.transform.childCount; ++i)
@@ -64,6 +66,7 @@ public class FlipController : MonoBehaviour
             else
                 flip = 1;
 
+            audio.Play();
             FlipGravityOfGroups();
         }
 
