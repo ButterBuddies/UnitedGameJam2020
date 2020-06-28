@@ -460,6 +460,16 @@ PrefabInstance:
       propertyPath: otherEndOfTeleporter
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6985730674690883084, guid: c3eaca6054d93994791e1b5dffabf1d3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 6985730674690883084, guid: c3eaca6054d93994791e1b5dffabf1d3,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6985730674690883087, guid: c3eaca6054d93994791e1b5dffabf1d3,
         type: 3}
       propertyPath: otherEndOfTeleporter
@@ -1422,7 +1432,7 @@ PrefabInstance:
     - target: {fileID: 6036187374712829368, guid: 78903e00b135d5e438fb45984dc77e65,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.86
+      value: -1.06
       objectReference: {fileID: 0}
     - target: {fileID: 6036187374712829368, guid: 78903e00b135d5e438fb45984dc77e65,
         type: 3}
@@ -2959,6 +2969,21 @@ PrefabInstance:
       propertyPath: otherEndOfTeleporter
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6985730674690883084, guid: c3eaca6054d93994791e1b5dffabf1d3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6985730674690883084, guid: c3eaca6054d93994791e1b5dffabf1d3,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6985730674690883084, guid: c3eaca6054d93994791e1b5dffabf1d3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.28
+      objectReference: {fileID: 0}
     - target: {fileID: 6985730674690883087, guid: c3eaca6054d93994791e1b5dffabf1d3,
         type: 3}
       propertyPath: otherEndOfTeleporter
@@ -2982,7 +3007,7 @@ PrefabInstance:
     - target: {fileID: 6036187374712829368, guid: 78903e00b135d5e438fb45984dc77e65,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.66
+      value: 0.91
       objectReference: {fileID: 0}
     - target: {fileID: 6036187374712829368, guid: 78903e00b135d5e438fb45984dc77e65,
         type: 3}
