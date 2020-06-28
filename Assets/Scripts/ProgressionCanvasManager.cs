@@ -8,8 +8,8 @@ public class ProgressionCanvasManager : MonoBehaviour
 {
     public TextMeshProUGUI textToUpdate = null;
     private int currentIndex = 0;
-    private int world = 0;
-    private int level = 0;
+    private char world;
+    private char level;
 
     private void Awake()
     {
@@ -21,16 +21,9 @@ public class ProgressionCanvasManager : MonoBehaviour
         if(SceneManager.GetActiveScene().buildIndex != currentIndex)
         {
             currentIndex = SceneManager.GetActiveScene().buildIndex;
-            world = (int)Mathf.Floor(currentIndex/5) + 1;
-
-            if(currentIndex <= 5)
-            {
-                level = currentIndex;
-            }
-            else
-            {
-                level = ( currentIndex % 5 );
-            }
+            Debug.Log(SceneManager.GetActiveScene().name);
+            level = SceneManager.GetActiveScene().name[7];
+            world = SceneManager.GetActiveScene().name[5];
             
             textToUpdate.text = $"World: {world} \t Level: {level} / 5";
         }
