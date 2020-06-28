@@ -22,10 +22,11 @@ public class ProgressionCanvasManager : MonoBehaviour
         {
             currentIndex = SceneManager.GetActiveScene().buildIndex;
             level = (currentIndex % 6) + 1;
-            world = (int)((float)currentIndex / (float)5);
-            if(world == 0)
+            world = (int)((float)currentIndex / (float)5) + 1;
+
+            if(level == 0)
             {
-                world = 5;
+                level = 5;
             }
 
             //Debug.Log("World: " + world + " Level: " + level);
