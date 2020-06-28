@@ -172,13 +172,39 @@ public class PlayerController : MonoBehaviour
 
         float rayDir = Mathf.Clamp(this.transform.position.x - DropoffPosition.position.x, -1, 1) * blockSafeDistanceCheck;
         Debug.Log(rayDir);
-        RaycastHit2D[] hit = Physics2D.RaycastAll(this.transform.position, Vector2.left * rayDir, Vector2.Distance(this.transform.position, DropoffPosition.position), dropoffMask);
+        float rayDist = Vector2.Distance(this.transform.position, DropoffPosition.position);
+        RaycastHit2D[] hit = Physics2D.RaycastAll(this.transform.position, Vector2.left * rayDir, rayDist, dropoffMask);
         Collider2D c = this.GetComponent<Collider2D>();
+        bool isMirror = holding.GetComponent<MirrorBlock>() != null;
+
+
+        // in this special case where we have a mirror block, also check for the mirror world for safe drop.
+        if (isMirror)
+        {
+            Vector3 mirrorPos = this.transform.position;
+            mirrorPos.y = -mirrorPos.y;
+            RaycastHit2D[] mirrorHit = Physics2D.RaycastAll(mirrorPos, Vector2.left * rayDir, rayDist, dropoffMask);
+            // I DETECT SOMETHING! PREVENT PUTTING DA BLOCK DOWN!!!
+            foreach (var h in mirrorHit)
+            {
+                // THIS IS INTERESTING WE GOTTA CHECK IF THIS IS THE MIRROR BLOCK!!!
+                if (h.collider == c)
+                    continue;
+                if (h)
+                {
+                    if (sound != null)
+                        sound.PlayNegative();
+                    return false;
+                }
+            }
+        }
 
         // I DETECT SOMETHING! PREVENT PUTTING DA BLOCK DOWN!!!
         foreach (var h in hit)
         {
-            //Debug.Log(h.collider.gameObject.name);
+            // THIS IS INTERESTING WE GOTTA CHECK IF THIS IS THE MIRROR BLOCK!!!
+            
+
             // this sounds expensive....
             if (h.collider == c)
                 continue;
@@ -192,7 +218,20 @@ public class PlayerController : MonoBehaviour
 
         if (sound != null)
             sound.PlayDrop();
-        holding.transform.position = DropoffPosition?.position ?? PickupPosition.position;
+
+        Vector3 pos = DropoffPosition?.position ?? PickupPosition.position;
+         
+
+        if ( holding.GetComponent<MirrorBlock>())
+        {
+            pos.y = this.transform.position.y;
+            holding.transform.position = pos;
+        }
+        else
+        {
+            holding.transform.position = pos;
+        }
+
         Rigidbody2D temp = holding.GetComponent<Rigidbody2D>();
         if (temp != null)
         {

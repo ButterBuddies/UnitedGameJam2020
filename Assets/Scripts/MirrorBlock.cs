@@ -1,18 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MirrorBlock : MonoBehaviour
-{
+{   
     public GameObject otherSideOfMirror;
     private Vector3 myLastPos;
-
+    public bool IsHost = true;
+    
     private void Start()
     {
         myLastPos = transform.position;
     }
 
-    public void Update()
+    public void LateUpdate()
     {
         if (transform.position != myLastPos) //must have moved, so update the other side
         {
