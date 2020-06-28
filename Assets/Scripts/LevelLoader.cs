@@ -15,6 +15,7 @@ public class LevelLoader : MonoBehaviour
 
     private void Start()
     {
+        // why didn't this work??? 
         if (transition == null) // ???????
             transition = GameObject.Find("FadeToBlack")?.GetComponent<Animator>();
     }
@@ -46,7 +47,7 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        if(SceneManager.GetActiveScene().buildIndex + 1 == SceneManager.sceneCount)
+        if(SceneManager.GetActiveScene().buildIndex >= SceneManager.sceneCount)
         {
             LoadMainMenu();
         }
