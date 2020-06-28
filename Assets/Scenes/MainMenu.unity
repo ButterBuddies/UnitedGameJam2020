@@ -959,7 +959,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: db79265b3c2068d4489febb1fdb9675b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: de88cf4c5d46a8345bcad0eee3ceb54d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2476,6 +2476,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BackgroundMusicSetter
       objectReference: {fileID: 0}
+    - target: {fileID: 1604588525762345023, guid: 7729986551400544db3a81413609213f,
+        type: 3}
+      propertyPath: musicArray.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: af96833697082884b872fccaab4049d3, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7729986551400544db3a81413609213f, type: 3}
 --- !u!1 &688833111
@@ -5382,7 +5387,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: adc32f4754ab33b438ff0c2eaf984b43, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 59580592e8171ef4d93afb5011b394a7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6702,7 +6707,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e67974e5a8dcf564d8831952b8fbaeab, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3d808037185461a4491314bb3b862be1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7039,7 +7044,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bbf76c518df3714429b678b1b84c6e26, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 16d3fac86e8fa2240bd8d760799140e4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
