@@ -8,6 +8,12 @@ public class LevelLoader : MonoBehaviour
     public Animator transition;
     public float transitionTime = 1f;
 
+    private void Start()
+    {
+        if (transition == null)
+            transition = GameObject.Find("FadeToBlack").GetComponent<Animator>();
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
