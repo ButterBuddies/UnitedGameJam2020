@@ -21,7 +21,7 @@ public class ProgressionCanvasManager : MonoBehaviour
         if(SceneManager.GetActiveScene().buildIndex != currentIndex)
         {
             currentIndex = SceneManager.GetActiveScene().buildIndex;
-            level = (currentIndex % 6) + 1;
+            level = (currentIndex % 6);
             world = (int)((float)currentIndex / (float)5) + 1;
 
             if(level == 0)
