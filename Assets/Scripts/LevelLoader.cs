@@ -16,8 +16,8 @@ public class LevelLoader : MonoBehaviour
 
     private void Start()
     {
-        if (transition == null)
-            transition = GameObject.Find("FadeToBlack").GetComponent<Animator>();
+        if (transition == null) // ???????
+            transition = GameObject.Find("FadeToBlack")?.GetComponent<Animator>();
     }
 
     private void Update()
@@ -65,7 +65,9 @@ public class LevelLoader : MonoBehaviour
     IEnumerator LoadLevel(int levelIndex)
     {
         isInTransition = true;
-        transition.SetTrigger("StartAnim");
+        //???
+        transition?.gameObject?.SetActive(true);
+        transition?.SetTrigger("StartAnim");
         yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene(levelIndex);
     }
