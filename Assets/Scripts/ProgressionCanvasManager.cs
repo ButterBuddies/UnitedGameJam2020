@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 using TMPro;
 
@@ -22,7 +21,7 @@ public class ProgressionCanvasManager : MonoBehaviour
         if(SceneManager.GetActiveScene().buildIndex != currentIndex)
         {
             currentIndex = SceneManager.GetActiveScene().buildIndex;
-            level = currentIndex % 5;
+            level = currentIndex % 6;
             world = (int)((float)currentIndex / (float)5) + 1;
 
             //Debug.Log("World: " + world + " Level: " + level);
