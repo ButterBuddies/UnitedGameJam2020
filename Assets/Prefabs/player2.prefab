@@ -203,7 +203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 2180874784972166097}
   speed: 5
-  jumpForce: 4
+  jumpForce: 5
   maxJumps: 1
   JumpMask:
     serializedVersion: 2
