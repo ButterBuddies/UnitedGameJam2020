@@ -331,6 +331,10 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void FixedUpdate()
     {
+
+        anim.SetBool("IsDangling", false);
+        anim.SetBool("IsSurfing", false);
+
         #region Movement
 
         if ( dir < 0 && faceRight )
@@ -353,6 +357,8 @@ public class PlayerController : MonoBehaviour
         // If the player is upside down we want to move the block across as if it was surfing through the air...
         if( belowFeet != null )
         {
+            //surfing
+            anim.SetBool("IsSurfing", true);
             belowFeet.velocity = velocity;
         }
         // adjust the physical material to make the movement more smooth.
@@ -364,6 +370,13 @@ public class PlayerController : MonoBehaviour
 
         if( holding != null )
         {
+            if (!playerOne)
+            {
+                //riding
+                anim.SetBool("IsDangling", true);
+            }
+            
+
             holding.transform.position = HoldingTransformation.position;
         }
 
