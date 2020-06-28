@@ -1289,7 +1289,7 @@ PrefabInstance:
         type: 3}
       propertyPath: winScreen
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1923381516}
     - target: {fileID: 855572089903639048, guid: 3bc68473f1b2efa43a413a09be96e615,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5613,7 +5613,7 @@ PrefabInstance:
         type: 3}
       propertyPath: winScreen
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1923381516}
     - target: {fileID: 855572089903639048, guid: 3bc68473f1b2efa43a413a09be96e615,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8215,6 +8215,12 @@ PrefabInstance:
 --- !u!224 &1923381515 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7272000205194690790, guid: 9caa174567c9ebc42825a3d5d62fb4a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1923381514}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1923381516 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4664382473086395322, guid: 9caa174567c9ebc42825a3d5d62fb4a3,
     type: 3}
   m_PrefabInstance: {fileID: 1923381514}
   m_PrefabAsset: {fileID: 0}
