@@ -49,6 +49,15 @@ public class Goal : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            winScreen.SetActive(true);
+        }
+    }
+
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player1")
