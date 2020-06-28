@@ -190,7 +190,8 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        sound.PlayDrop();
+        if (sound != null)
+            sound.PlayDrop();
         holding.transform.position = DropoffPosition?.position ?? PickupPosition.position;
         Rigidbody2D temp = holding.GetComponent<Rigidbody2D>();
         if (temp != null)
