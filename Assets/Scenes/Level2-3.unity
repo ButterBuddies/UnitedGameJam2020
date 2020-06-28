@@ -459,15 +459,9 @@ PrefabInstance:
         type: 3}
       propertyPath: otherEndOfTeleporter
       value: 
-      objectReference: {fileID: 1216386772}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3eaca6054d93994791e1b5dffabf1d3, type: 3}
---- !u!1 &81874885 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4559198625790487252, guid: c3eaca6054d93994791e1b5dffabf1d3,
-    type: 3}
-  m_PrefabInstance: {fileID: 81874884}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &88088612
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1745,6 +1739,75 @@ BoxCollider2D:
     type: 3}
   m_PrefabInstance: {fileID: 524635189}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &601128205
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1604588525762344992, guid: 7729986551400544db3a81413609213f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1604588525762344992, guid: 7729986551400544db3a81413609213f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1604588525762344992, guid: 7729986551400544db3a81413609213f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1604588525762344992, guid: 7729986551400544db3a81413609213f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1604588525762344992, guid: 7729986551400544db3a81413609213f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1604588525762344992, guid: 7729986551400544db3a81413609213f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1604588525762344992, guid: 7729986551400544db3a81413609213f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1604588525762344992, guid: 7729986551400544db3a81413609213f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1604588525762344992, guid: 7729986551400544db3a81413609213f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1604588525762344992, guid: 7729986551400544db3a81413609213f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1604588525762344992, guid: 7729986551400544db3a81413609213f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1604588525762345022, guid: 7729986551400544db3a81413609213f,
+        type: 3}
+      propertyPath: m_Name
+      value: BackgroundMusicSetter
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7729986551400544db3a81413609213f, type: 3}
 --- !u!1001 &643292367
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2890,15 +2953,9 @@ PrefabInstance:
         type: 3}
       propertyPath: otherEndOfTeleporter
       value: 
-      objectReference: {fileID: 81874885}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3eaca6054d93994791e1b5dffabf1d3, type: 3}
---- !u!1 &1216386772 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4559198625790487252, guid: c3eaca6054d93994791e1b5dffabf1d3,
-    type: 3}
-  m_PrefabInstance: {fileID: 1216386771}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1220844199
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4812,7 +4869,7 @@ Transform:
   - {fileID: 7213502586281918407}
   - {fileID: 1731966038}
   m_Father: {fileID: 933683418}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!66 &1893382702
 CompositeCollider2D:
