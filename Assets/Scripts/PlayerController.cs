@@ -130,6 +130,7 @@ public class PlayerController : MonoBehaviour
     {
         // safeguard in case we would try and pick up multiple of object?
         if (holding != null) return true;
+
         holding = go.GetComponent<PickupObject>();
         // only pick up when it's a tag as pickupObject instead.
         if (holding != null && holding.IsLock == false )
@@ -243,18 +244,15 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    RaycastHit2D[] hit = Physics2D.RaycastAll(PickupPosition.position, Vector2.up * 0.01f);
+                    RaycastHit2D[] hit = Physics2D.RaycastAll(PickupPosition.position, Vector2.up * rb.gravityScale, 0.01f);
                     foreach ( var h in hit )
                     {
                         // skip itself.
-                        if (h.transform == PickupPosition)
-                            continue;
-                        if (PickupObject(h.transform.gameObject))
-                            break;
+                        if (h.transform == PickupPosition) continue;
+                        if (PickupObject(h.transform.gameObject)) break;
                     }
                 }
-        }
-
+            }
         }
         else if( !v && isCrouching )
         {
@@ -274,9 +272,7 @@ public class PlayerController : MonoBehaviour
         //GetComponent<Rigidbody2D>().velocity = transform.up * 10;
         rb.AddForce(Vector3.up * rb.gravityScale * jumpForce, ForceMode2D.Impulse);
         //jumpCount -= 1;
-        
-            //canJump = false;
-        
+            //canJump = false;   
     }
 
     /// <summary>
@@ -284,8 +280,6 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void FixedUpdate()
     {
-
-
         #region Movement
 
         if ( dir < 0 && faceRight )
@@ -331,7 +325,7 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D[] ray = Physics2D.RaycastAll(transform.position, Vector3.down * rb.gravityScale, groundCheck, JumpMask);
         foreach( var h in ray )
         {
-            if (h.rigidbody == rb) continue;
+            if (h.rigidbody      == rb) continue;
             // in this case if it's not the player itself, then we're obvioulsy touching the ground at this point..
             canJump = true;
         }
@@ -339,14 +333,17 @@ public class PlayerController : MonoBehaviour
         #endregion
 
         #region Animation
-        anim.SetBool("IsWalking", false);
-        anim.SetBool("IsFalling", false);
-        if (dir != 0)
-        {
-            anim.SetBool("IsWalking", true);
-        }
+
+        //???
+        //anim.SetBool("IsWalking", false);
+        //anim.SetBool("IsFalling", false);
+        //if (dir != 0)
+        //{
+            anim.SetBool("IsWalking", dir != 0);
+        //}
 
         anim.SetBool("IsFalling", !canJump);
+
         #endregion
     }
 
