@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicArray:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 75ccdfb5eccbf0143b13f4b0b4a7eab5, type: 3}
   - {fileID: 8300000, guid: 75ccdfb5eccbf0143b13f4b0b4a7eab5, type: 3}
   - {fileID: 8300000, guid: 8fb490b988d279846ab721d0de0dbb02, type: 3}
   - {fileID: 8300000, guid: 6885458784c467e44afc8a19b4fd8792, type: 3}
@@ -72,7 +72,7 @@ AudioSource:
   m_Volume: 0.02
   m_Pitch: 1
   Loop: 1
-  Mute: 1
+  Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
