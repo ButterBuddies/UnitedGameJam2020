@@ -470,6 +470,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6985730674690883085, guid: c3eaca6054d93994791e1b5dffabf1d3,
+        type: 3}
+      propertyPath: m_Name
+      value: TeleporterB
+      objectReference: {fileID: 0}
     - target: {fileID: 6985730674690883087, guid: c3eaca6054d93994791e1b5dffabf1d3,
         type: 3}
       propertyPath: otherEndOfTeleporter
@@ -477,6 +482,12 @@ PrefabInstance:
       objectReference: {fileID: 1216386772}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3eaca6054d93994791e1b5dffabf1d3, type: 3}
+--- !u!1 &81874885 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6985730674690883085, guid: c3eaca6054d93994791e1b5dffabf1d3,
+    type: 3}
+  m_PrefabInstance: {fileID: 81874884}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &88088612
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2984,11 +2995,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 2.28
       objectReference: {fileID: 0}
+    - target: {fileID: 6985730674690883085, guid: c3eaca6054d93994791e1b5dffabf1d3,
+        type: 3}
+      propertyPath: m_Name
+      value: TeleporterA
+      objectReference: {fileID: 0}
     - target: {fileID: 6985730674690883087, guid: c3eaca6054d93994791e1b5dffabf1d3,
         type: 3}
       propertyPath: otherEndOfTeleporter
       value: 
-      objectReference: {fileID: 1216386772}
+      objectReference: {fileID: 81874885}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3eaca6054d93994791e1b5dffabf1d3, type: 3}
 --- !u!1 &1216386772 stripped
