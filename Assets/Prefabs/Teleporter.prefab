@@ -50,7 +50,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 160acc6a274b5294f8076db30e52ec1d, type: 2}
+  - {fileID: 2100000, guid: e4d67c18350acd74ab4c1cea5453f438, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 394e93ce356b57344903a08ff72fcab2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 39e0cb37fbafba24086c01c3b4286972, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 526309156}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18acfc57699955646a15b87a287a5df3, type: 3}
+  m_Script: {fileID: 11500000, guid: 50c586560dbf27c4cba044314fc07bde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 15
@@ -168,7 +168,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e114988a1c6bd9449aacde947f8c8b1b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 11970fcf8b4ac3e41bfed5ca82318dfe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
