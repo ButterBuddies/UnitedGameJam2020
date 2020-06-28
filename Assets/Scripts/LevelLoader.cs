@@ -47,13 +47,13 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        if(SceneManager.GetActiveScene().buildIndex >= SceneManager.sceneCount)
+        try
+        { 
+            StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        }
+        catch   // suggested what Gene did... TRY AND CATCH MOFO!!
         {
             LoadMainMenu();
-        }
-        else
-        {
-            StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
         }
     }
 
