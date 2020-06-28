@@ -18,6 +18,11 @@ public class ProgressionCanvasManager : MonoBehaviour
 
     public void Update()
     {
+        if(SceneManager.GetActiveScene().name == "WinScreen")
+        {
+            Destroy(this.gameObject);
+        }
+
         if(SceneManager.GetActiveScene().buildIndex != currentIndex)
         {
             currentIndex = SceneManager.GetActiveScene().buildIndex;
